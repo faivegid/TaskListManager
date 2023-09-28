@@ -1,3 +1,4 @@
+using TaskListManager.AppService;
 using TaskListManager.AppService.Tasks;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(TaskListManagerMapperProfile));
 
 // configure app service dependency injection
 builder.Services.AddScoped<ITaskAppService, TaskAppService>();
