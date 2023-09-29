@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace TaskListManager.AppService.Tasks
+namespace TaskListManager.AppService.AppTasks
 {
     public class TaskAppService : ITaskAppService
     {

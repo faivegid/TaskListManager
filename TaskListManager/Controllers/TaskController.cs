@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaskListManager.AppService.Tasks;
+using TaskListManager.AppService.AppTasks;
 
 namespace TaskListManager.Controllers
 {

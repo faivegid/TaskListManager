@@ -1,4 +1,4 @@
-﻿namespace TaskListManager.AppService.Tasks
+﻿namespace TaskListManager.AppService.AppTasks
 {
     public interface ITaskAppService
     {

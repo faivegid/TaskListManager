@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskListManager.AppService"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskListManager.Domain", "TaskListManager.Domain\TaskListManager.Domain.csproj", "{874B2CCE-6E98-4723-9F1C-56B53B7E0299}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskListManager.Shared", "TaskListManager.Shared\TaskListManager.Shared.csproj", "{099A31AA-26F2-40AC-A818-22A6E9A02472}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{874B2CCE-6E98-4723-9F1C-56B53B7E0299}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{874B2CCE-6E98-4723-9F1C-56B53B7E0299}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{874B2CCE-6E98-4723-9F1C-56B53B7E0299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{099A31AA-26F2-40AC-A818-22A6E9A02472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{099A31AA-26F2-40AC-A818-22A6E9A02472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{099A31AA-26F2-40AC-A818-22A6E9A02472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{099A31AA-26F2-40AC-A818-22A6E9A02472}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿namespace TaskListManager.Domain.Tasks
+﻿namespace TaskListManager.Domain.AppTasks
 {
     public class AppTask
     {

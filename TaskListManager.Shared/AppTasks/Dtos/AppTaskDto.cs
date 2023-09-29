@@ -1,4 +1,4 @@
-﻿namespace TaskListManager.AppService.Tasks.Dtos
+﻿namespace TaskListManager.Shared.AppTasks.Dtos
 {
     public class AppTaskDto
     {

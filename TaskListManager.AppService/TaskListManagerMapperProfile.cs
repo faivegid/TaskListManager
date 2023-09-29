@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using TaskListManager.AppService.Tasks.Dtos;
-using TaskListManager.Domain.Tasks;
+using TaskListManager.Domain.AppTasks;
+using TaskListManager.Shared.AppTasks.Dtos;
 
 namespace TaskListManager.AppService
 {
