@@ -3,16 +3,16 @@
     public class ErrorObject
     {
         public string ErrorMessage { get; set; }
-        public string ErrorCode { get; set; }
+        public object ErrorData { get; set; }
 
         public ErrorObject()
         {
         }
 
-        public ErrorObject(string message, string errCode)
+        public ErrorObject(string message, object errorObject)
         {
             ErrorMessage = message;
-            ErrorCode = errCode;
+            ErrorData = errorObject;
         }
     }
 }

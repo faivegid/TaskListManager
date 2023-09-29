@@ -27,13 +27,13 @@ namespace TaskListManager.Shared.Responses
             return new ApiResponse<T>(Data, statusCode);
         }
 
-        public static ApiResponse<object> Error(string errorMsg, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
+        public static ApiResponse<object> Error(string errorMsg, HttpStatusCode statusCode = HttpStatusCode.BadRequest, object errorObject = null)
         {
             return new ApiResponse<object>
             {
                 Message = statusCode.ToString(),
                 StatusCode = (int)statusCode,
-                Error = new ErrorObject(errorMsg, statusCode.ToString())
+                Error = new ErrorObject(errorMsg, errorObject)
             };
         }
     }

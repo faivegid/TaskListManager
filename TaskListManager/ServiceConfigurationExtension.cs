@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using TaskListManager.Shared.Responses;
 
 namespace TaskListManager
@@ -20,11 +19,10 @@ namespace TaskListManager
                         .Where(x => x.Value.Errors.Count > 0)
                         .ToDictionary(x => x.Key, x => string.Join(Environment.NewLine, x.Value.Errors.Select(e => e.ErrorMessage)));
 
-                    var response = ApiResponse.Error(JsonConvert.SerializeObject(errors));
+                    var response = ApiResponse.Error("Validation error(s) occureed", errorObject: errors);
                     return new BadRequestObjectResult(response);
                 };
             });
         }
-
     }
 }
