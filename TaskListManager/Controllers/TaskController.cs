@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskListManager.AppService.AppTasks;
+using TaskListManager.Shared.AppTasks;
 using TaskListManager.Shared.Exceptions;
 using TaskListManager.Shared.Responses;
 
@@ -19,43 +20,41 @@ namespace TaskListManager.Controllers
         [HttpGet, Route("/")]
         public async Task<IActionResult> Get()
         {
-            try
-            {
-                var data = await _taskService.GetTasks();
-                var response = ApiResponse.Success(data);
-                return StatusCode(response.StatusCode, response);
-            }
-            catch (ApiCallException ax)
-            {
-                var response = ApiResponse.Error(ax.ErrorMessage, ax.ApiResponseMessage);
-                return StatusCode(response.StatusCode, response);
-            }
-            catch(Exception ex)
-            {
-                var response = ApiResponse.Error("Internal Server Error", ex.Message, System.Net.HttpStatusCode.InternalServerError);
-                return StatusCode(response.StatusCode, response);
-            }
+            var data = await _taskService.GetTasks();
+            var response = ApiResponse.Success(data);
+            return StatusCode(response.StatusCode, response);
         }
 
         [HttpGet, Route("/{id}")]
-        public async Task<IActionResult> Get([FromRoute]int id)
+        public async Task<IActionResult> Get([FromRoute] string id)
         {
-            try
-            {
-                var data = await _taskService.GetTask(id);
-                var response = ApiResponse.Success(data);
-                return StatusCode(response.StatusCode, response);
-            }
-            catch (ApiCallException ax)
-            {
-                var response = ApiResponse.Error(ax.ErrorMessage, ax.ApiResponseMessage, System.Net.HttpStatusCode.InternalServerError);
-                return StatusCode(response.StatusCode, response);
-            }
-            catch (Exception ex)
-            {
-                var response = ApiResponse.Error("Internal Server Error", ex.Message);
-                return StatusCode(response.StatusCode, response);
-            }
+            var data = await _taskService.GetTask(id);
+            var response = ApiResponse.Success(data);
+            return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpPost, Route("")]
+        public async Task<IActionResult> CreateTask([FromBody] TaskCreateRto createRequest)
+        {
+            var data = await _taskService.CreateTask(createRequest);
+            var response = ApiResponse.Success(data, System.Net.HttpStatusCode.Created);
+            return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpPatch, Route("/{id}")]
+        public async Task<IActionResult> UpdateTask([FromRoute] string id, [FromBody] TaskUpdateRto updateRequest)
+        {
+            var data = await _taskService.UpdateTask(id, updateRequest);
+            var response = ApiResponse.Success(data);
+            return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpDelete, Route("/{id}")]
+        public async Task<IActionResult> DeleteTask([FromRoute] string id)
+        {
+            var data = await _taskService.DeleteTask(id);
+            var response = ApiResponse.Success(data);
+            return StatusCode(response.StatusCode, response);
         }
     }
 }

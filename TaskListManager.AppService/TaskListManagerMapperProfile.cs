@@ -11,8 +11,8 @@ namespace TaskListManager.AppService
             CreateMap<AppTask, AppTaskDto>()
                 .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.StartDate.AddDays(src.ElapsedTime)))
                 .ForMember(dest => dest.DueDate, opt => opt.MapFrom(src => src.StartDate.AddDays(src.AllottedTime)))
-                .ForMember(dest => dest.DaysOverdue, opt => opt.MapFrom(src => src.Status ?0: src.ElapsedTime - src.AllottedTime ))
-                .ForMember(dest => dest.DaysLate, opt => opt.MapFrom(src => src.Status ? src.AllottedTime - src.ElapsedTime : 0))
+                .ForMember(dest => dest.DaysOverdue, opt => opt.MapFrom(src => src.Status ? 0 : Math.Abs(src.ElapsedTime - src.AllottedTime)))
+                .ForMember(dest => dest.DaysLate, opt => opt.MapFrom(src => src.Status ? Math.Abs(src.AllottedTime - src.ElapsedTime) : 0))
                 .ReverseMap();
         }
     }

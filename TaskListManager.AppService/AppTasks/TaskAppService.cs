@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using System.Threading.Tasks;
 using TaskListManager.Domain.AppTasks;
+using TaskListManager.Shared.AppTasks;
 using TaskListManager.Shared.AppTasks.Dtos;
+using TaskListManager.Shared.Utility;
 
 namespace TaskListManager.AppService.AppTasks
 {
@@ -16,7 +17,7 @@ namespace TaskListManager.AppService.AppTasks
             _taskRepository = taskRepository;
         }
 
-        public async Task<AppTaskDto> GetTask(int id)
+        public async Task<AppTaskDto> GetTask(string id)
         {
             var task = await _taskRepository.Get(id);
             var taskDto = _mapper.Map<AppTaskDto>(task);
@@ -30,6 +31,42 @@ namespace TaskListManager.AppService.AppTasks
             var taskDtos = _mapper.Map<List<AppTaskDto>>(tasks);
 
             return taskDtos;
+        }
+
+        public async Task<AppTaskDto> CreateTask(TaskCreateRto createRequest)
+        {
+            var newTask = new AppTask()
+            {
+                Name = createRequest.Name,
+                Description = createRequest.Description,
+                StartDate = createRequest.StartDate,
+                Status = false,
+                AllottedTime = createRequest.AllottedTime,
+                ElapsedTime = 0
+            };
+
+            var savedTask = await _taskRepository.Create(newTask);
+            return _mapper.Map<AppTaskDto>(savedTask);
+        }
+
+        public async Task<AppTaskDto> UpdateTask(string id, TaskUpdateRto updateRto)
+        {
+            var appTask = await _taskRepository.Get(id);
+            var startDate = appTask.StartDate;
+
+            UpdateHelper.UpdateModelProperties(appTask, updateRto);
+            if(startDate !=  appTask.StartDate)
+            {
+                appTask.ElapsedTime = 0;
+            }
+
+            var updatedTask = await _taskRepository.Update(appTask);
+            return _mapper.Map<AppTaskDto>(updatedTask);
+        }
+
+        public async Task<bool> DeleteTask(string id)
+        {
+            return await _taskRepository.Delete(id);
         }
     }
 }

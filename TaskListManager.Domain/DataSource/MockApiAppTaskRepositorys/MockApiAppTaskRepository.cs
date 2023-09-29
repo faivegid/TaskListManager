@@ -13,7 +13,7 @@ namespace TaskListManager.Domain.DataSource.MockApiAppTaskRepositorys
             _mockapiClient = mockapiClient;
         }
 
-        public async Task<AppTask> Get(int id)
+        public async Task<AppTask> Get(string id)
         {
             var response = await _mockapiClient.SendAsync(HttpMethod.Get, $"api/v1/tasks/{id}");
 
@@ -49,7 +49,7 @@ namespace TaskListManager.Domain.DataSource.MockApiAppTaskRepositorys
             return result;
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var response = await _mockapiClient.SendAsync(HttpMethod.Delete, $"api/v1/tasks/{id}");
 
